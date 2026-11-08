@@ -12,6 +12,7 @@
  * @module @deepseek-ai/dsh-web-app
  */
 
+import { networkInterfaces } from 'node:os'
 import { spawn, type ChildProcess } from 'node:child_process'
 import { createRequire } from 'node:module'
 import { dirname, join } from 'node:path'
@@ -26,6 +27,39 @@ import { scrubbedParentEnv } from '@deepseek-ai/dsh-subprocess'
 import type {} from '@deepseek-ai/cordis-plugin-loader'
 import type {} from '@deepseek-ai/dsh-shell-env'
 import { parsePublicUrl } from './public-url.ts'
+
+
+/** Detect available LAN IPv4 addresses on the host system. */
+function detectLanIps(boundHost?: string, publicUrl?: string): string[] {
+  const ips = new Set<string>()
+  try {
+    const interfaces = networkInterfaces()
+    for (const list of Object.values(interfaces)) {
+      if (list === undefined) continue
+      for (const info of list) {
+        if (info.family === 'IPv4' && !info.internal && !info.address.startsWith('127.')) {
+          ips.add(info.address)
+        }
+      }
+    }
+  } catch {
+    // In restricted container environments, networkInterfaces may fail.
+  }
+  if (boundHost !== undefined && !isLoopbackHost(boundHost)) {
+    ips.add(boundHost)
+  }
+  if (publicUrl !== undefined) {
+    try {
+      const url = new URL(publicUrl)
+      if (url.hostname && !isLoopbackHost(url.hostname)) {
+        ips.add(url.hostname)
+      }
+    } catch {
+      // Ignored
+    }
+  }
+  return Array.from(ips)
+}
 
 /** The Web GUI this process serves, provided by the `web-runtime` row. */
 export interface WebApp {
@@ -215,6 +249,33 @@ export function apply(ctx: Context, config: Config): void {
       })
     })
   }
+  ctx.inject(['connection'], (connCtx) => {
+    connCtx.effect(() => connCtx.connection.fetch.register({
+      path: '/api/remote-access-info',
+      methods: ['GET'],
+      requestBody: 'buffered',
+      fetch: () => {
+        const lanIps = detectLanIps(boundHost, publicUrl)
+        const isLoopback = isLoopbackHost(boundHost)
+        const port = ctx.webServer.port
+        const protocol = ctx.webServer.protocol
+        const token = new URL(connCtx.connection.authenticatedUrl('http://127.0.0.1')).searchParams.get('token') ?? ''
+        const user = process.env.USER ?? 'user'
+        return Promise.resolve(new Response(JSON.stringify({
+          lanIps,
+          bindHost: boundHost,
+          isLoopback,
+          port,
+          protocol,
+          token,
+          user,
+        }), {
+          headers: { 'content-type': 'application/json; charset=utf-8' },
+        }))
+      },
+    }), 'web-app: /api/remote-access-info route')
+  })
+
   if (config.printUrl || handoffBrowser) {
     ctx.inject(['connection'], (connectionCtx) => {
       // The URL line and browser handoff are readiness signals: supervisors RPC

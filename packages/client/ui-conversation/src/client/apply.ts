@@ -49,6 +49,8 @@ import { TRAJECTORY_VIEW_ID, resolveActiveView } from './view-selection.ts'
 import { createViewPins } from './view-pins.ts'
 import { en, ja, es, fr, de, ru, pt, NS, zh, type ConversationKey } from './locales.ts'
 import { CONVERSATION_SETTINGS_NAMESPACE, type ConversationSettings } from '../submission-settings.ts'
+import { SessionRemoteAccessAction } from './remote-access/SessionRemoteAccessAction.tsx'
+import { SessionRemoteAccessSettingsRow } from './remote-access/SessionRemoteAccessSettingsRow.tsx'
 
 declare module '@deepseek-ai/dsh-client-ui-slots' {
   interface LocaleNamespaceMap {
@@ -194,6 +196,13 @@ export function apply(ctx: Context, config: Config = Config({})): void {
   )
 
   ctx.effect(() => () => { submissionPolicy.dispose() })
+
+  ctx.slots.inject('settings.general.item', () => ctx.slots.register({
+    name: 'settings.general.item',
+    id: 'remote-access-settings',
+    order: 30,
+    locale: NS,
+  }, SessionRemoteAccessSettingsRow))
 
   ctx.slots.inject('settings.general.item', () => ctx.slots.register({
     name: 'settings.general.item',
@@ -596,6 +605,13 @@ export function apply(ctx: Context, config: Config = Config({})): void {
     blocks: composerBlocks,
     maxConcurrentFileUploads,
   })
+  slots.inject('conversation.session.header.utilities', () => slots.register({
+    name: 'conversation.session.header.utilities',
+    id: 'remote-access',
+    order: 10,
+    locale: NS,
+  }, SessionRemoteAccessAction))
+
   ctx.plugin(todoDockEntry)
   ctx.plugin(queueDockEntry)
 }

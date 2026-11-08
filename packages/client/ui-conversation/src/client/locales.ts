@@ -398,6 +398,17 @@ export const zh = {
   'terminal.expandRest': '… 其余 {n} 行',
   'terminal.sendInput': '（发送输入）',
   'terminal.session': '终端 {sessionId}',
+  'remoteAccess.action': '远程连接',
+  'remoteAccess.dialog.title': '从其他设备连接 Harness',
+  'remoteAccess.dialog.close': '关闭',
+  'remoteAccess.dialog.warning.title': '安全警示',
+  'remoteAccess.dialog.warning.desc': '此凭据授予对此 Harness 实例的完全所有者控制权。请仅连接您自己的受信任设备。',
+  'remoteAccess.dialog.ssh.step1': '1. 在客户端电脑终端运行以下 SSH 端口转发命令：',
+  'remoteAccess.dialog.ssh.step2': '2. 在客户端浏览器打开此本地链接：',
+  'remoteAccess.dialog.copy': '复制',
+  'remoteAccess.dialog.copied': '已复制',
+  'remoteAccess.dialog.selectIp': '选择主机 IP',
+  'remoteAccess.settings.desc': '查看 SSH 端口转发命令及本地连接地址，以便从其他电脑安全连接。',
 } satisfies Record<string, string>
 
 /** The conversation namespace key union. */
@@ -796,6 +807,17 @@ export const en = {
   // aligned with these English values.
   'terminal.sendInput': '(send input)',
   'terminal.session': 'Terminal {sessionId}',
+  'remoteAccess.action': 'Remote access',
+  'remoteAccess.dialog.title': 'Connect from another device',
+  'remoteAccess.dialog.close': 'Close',
+  'remoteAccess.dialog.warning.title': 'Security warning',
+  'remoteAccess.dialog.warning.desc': 'This credential grants full owner control of this Harness instance. Only connect your own trusted devices.',
+  'remoteAccess.dialog.ssh.step1': '1. Run this SSH port forwarding command in your client terminal:',
+  'remoteAccess.dialog.ssh.step2': '2. In your client browser, open this local URL:',
+  'remoteAccess.dialog.copy': 'Copy',
+  'remoteAccess.dialog.copied': 'Copied',
+  'remoteAccess.dialog.selectIp': 'Select host IP',
+  'remoteAccess.settings.desc': 'View SSH port forwarding command and local URL to connect securely from another device.',
 } satisfies Record<ConversationKey, string>
 
 /** Japanese copy, checked against the English keys. */
@@ -1189,6 +1211,17 @@ export const ja = {
   'terminal.expandRest': '… 残り{n}行',
   'terminal.sendInput': '(入力を送信)',
   'terminal.session': 'ターミナル {sessionId}',
+  'remoteAccess.action': 'リモート接続',
+  'remoteAccess.dialog.title': '他のデバイスから接続',
+  'remoteAccess.dialog.close': '閉じる',
+  'remoteAccess.dialog.warning.title': 'セキュリティ警告',
+  'remoteAccess.dialog.warning.desc': 'この認証情報は、この Harness インスタンスの完全な管理者制御を許可します。信頼できる自身のデバイスのみ接続してください。',
+  'remoteAccess.dialog.ssh.step1': '1. クライアントPCの端末で以下のSSHポート転送コマンドを実行します:',
+  'remoteAccess.dialog.ssh.step2': '2. クライアントのブラウザでこのローカルURLを開きます:',
+  'remoteAccess.dialog.copy': 'コピー',
+  'remoteAccess.dialog.copied': 'コピー完了',
+  'remoteAccess.dialog.selectIp': 'ホストIPを選択',
+  'remoteAccess.settings.desc': '他のPCから安全に接続するためのSSHポート転送コマンドとローカルURLを表示します。',
 } satisfies Record<keyof typeof en, string>
 
 /** Spanish dictionary, checked against the English keys. */
@@ -1584,6 +1617,17 @@ export const es = {
   'detail.schedule.active': 'Habilitado',
   'detail.schedule.paused': 'Pausada',
   'detail.schedule.ended': 'Finalizada',
+  'remoteAccess.action': 'Acceso remoto',
+  'remoteAccess.dialog.title': 'Conectar desde otro dispositivo',
+  'remoteAccess.dialog.close': 'Cerrar',
+  'remoteAccess.dialog.warning.title': 'Advertencia de seguridad',
+  'remoteAccess.dialog.warning.desc': 'Esta credencial otorga control total de propietario sobre esta instancia de Harness. Conecte solo sus propios dispositivos de confianza.',
+  'remoteAccess.dialog.ssh.step1': '1. Ejecute este comando de reenvío de puertos SSH en la terminal de su cliente:',
+  'remoteAccess.dialog.ssh.step2': '2. En el navegador de su cliente, abra esta URL local:',
+  'remoteAccess.dialog.copy': 'Copiar',
+  'remoteAccess.dialog.copied': 'Copiado',
+  'remoteAccess.dialog.selectIp': 'Seleccionar IP de host',
+  'remoteAccess.settings.desc': 'Vea el comando de reenvío de puertos SSH y la URL local para conectarse de forma segura desde otro dispositivo.',
 } satisfies Record<keyof typeof en, string>
 
 /** French dictionary, checked against the English keys. */
@@ -1979,6 +2023,17 @@ export const fr = {
   'detail.schedule.active': 'Activé',
   'detail.schedule.paused': 'Suspendue',
   'detail.schedule.ended': 'Terminée',
+  'remoteAccess.action': 'Accès distant',
+  'remoteAccess.dialog.title': 'Se connecter depuis un autre appareil',
+  'remoteAccess.dialog.close': 'Fermer',
+  'remoteAccess.dialog.warning.title': 'Avertissement de sécurité',
+  'remoteAccess.dialog.warning.desc': 'Cet identifiant accorde un contrôle total de propriétaire sur cette instance Harness. Ne connectez que vos propres appareils de confiance.',
+  'remoteAccess.dialog.ssh.step1': '1. Exécutez cette commande de redirection de port SSH dans votre terminal client :',
+  'remoteAccess.dialog.ssh.step2': '2. Dans le navigateur de votre client, ouvrez cette URL locale :',
+  'remoteAccess.dialog.copy': 'Copier',
+  'remoteAccess.dialog.copied': 'Copié',
+  'remoteAccess.dialog.selectIp': 'Sélectionner l’IP de l’hôte',
+  'remoteAccess.settings.desc': 'Consultez la commande de redirection de port SSH et l’URL locale pour vous connecter en toute sécurité depuis un autre appareil.',
 } satisfies Record<keyof typeof en, string>
 
 /** German dictionary, checked against the English keys. */
@@ -2374,6 +2429,17 @@ export const de = {
   'detail.schedule.active': 'Aktiviert',
   'detail.schedule.paused': 'Pausiert',
   'detail.schedule.ended': 'Beendet',
+  'remoteAccess.action': 'Fernzugriff',
+  'remoteAccess.dialog.title': 'Von einem anderen Gerät verbinden',
+  'remoteAccess.dialog.close': 'Schließen',
+  'remoteAccess.dialog.warning.title': 'Sicherheitswarnung',
+  'remoteAccess.dialog.warning.desc': 'Diese Anmeldedaten gewähren die vollständige Eigentümerkontrolle über diese Harness-Instanz. Verbinden Sie nur Ihre eigenen vertrauenswürdigen Geräte.',
+  'remoteAccess.dialog.ssh.step1': '1. Führen Sie diesen SSH-Portweiterleitungsbefehl im Terminal Ihres Clients aus:',
+  'remoteAccess.dialog.ssh.step2': '2. Öffnen Sie in Ihrem Client-Browser diese lokale URL:',
+  'remoteAccess.dialog.copy': 'Kopieren',
+  'remoteAccess.dialog.copied': 'Kopiert',
+  'remoteAccess.dialog.selectIp': 'Host-IP auswählen',
+  'remoteAccess.settings.desc': 'Zeigen Sie den SSH-Portweiterleitungsbefehl und die lokale URL an, um eine sichere Verbindung von einem anderen Gerät aus herzustellen.',
 } satisfies Record<keyof typeof en, string>
 
 /** Russian dictionary, checked against the English keys. */
@@ -2769,6 +2835,17 @@ export const ru = {
   'detail.schedule.active': 'Включено',
   'detail.schedule.paused': 'Приостановлена',
   'detail.schedule.ended': 'Завершена',
+  'remoteAccess.action': 'Удаленный доступ',
+  'remoteAccess.dialog.title': 'Подключение с другого устройства',
+  'remoteAccess.dialog.close': 'Закрыть',
+  'remoteAccess.dialog.warning.title': 'Предупреждение безопасности',
+  'remoteAccess.dialog.warning.desc': 'Эти учетные данные предоставляют полный контроль владельца над этим экземпляром Harness. Подключайте только свои доверенные устройства.',
+  'remoteAccess.dialog.ssh.step1': '1. Выполните команду перенаправления портов SSH в терминале клиента:',
+  'remoteAccess.dialog.ssh.step2': '2. В браузере клиента откройте этот локальный адрес:',
+  'remoteAccess.dialog.copy': 'Скопировать',
+  'remoteAccess.dialog.copied': 'Скопировано',
+  'remoteAccess.dialog.selectIp': 'Выберите IP хоста',
+  'remoteAccess.settings.desc': 'Просмотр команды перенаправления портов SSH и локального URL для безопасного подключения с другого устройства.',
 } satisfies Record<keyof typeof en, string>
 
 /** Portuguese dictionary, checked against the English keys. */
@@ -3164,4 +3241,15 @@ export const pt = {
   'detail.schedule.active': 'Habilitado',
   'detail.schedule.paused': 'Pausada',
   'detail.schedule.ended': 'Concluída',
+  'remoteAccess.action': 'Acesso remoto',
+  'remoteAccess.dialog.title': 'Conectar de outro dispositivo',
+  'remoteAccess.dialog.close': 'Fechar',
+  'remoteAccess.dialog.warning.title': 'Aviso de segurança',
+  'remoteAccess.dialog.warning.desc': 'Esta credencial concede controle total de proprietário desta instância do Harness. Conecte apenas seus próprios dispositivos confiáveis.',
+  'remoteAccess.dialog.ssh.step1': '1. Execute este comando de encaminhamento de porta SSH no terminal do seu cliente:',
+  'remoteAccess.dialog.ssh.step2': '2. No navegador do seu cliente, abra este URL local:',
+  'remoteAccess.dialog.copy': 'Copiar',
+  'remoteAccess.dialog.copied': 'Copiado',
+  'remoteAccess.dialog.selectIp': 'Selecionar IP do host',
+  'remoteAccess.settings.desc': 'Veja o comando de encaminhamento de porta SSH e o URL local para conectar com segurança de outro dispositivo.',
 } satisfies Record<keyof typeof en, string>
