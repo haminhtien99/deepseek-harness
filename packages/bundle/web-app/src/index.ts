@@ -269,7 +269,10 @@ export function apply(ctx: Context, config: Config): void {
         const isLoopback = isLoopbackHost(boundHost)
         const port = ctx.webServer.port
         const protocol = ctx.webServer.protocol
-        const token = new URL(connCtx.connection.authenticatedUrl('http://127.0.0.1')).searchParams.get('token') ?? ''
+        const entries: WebEntryUrl[] = []
+        connCtx.emit(ctx.webServer, 'webserver/entry-url', appRootUrl(), entries)
+        const webEntry = entries.find(entry => entry.label === 'dsh web')
+        const token = webEntry === undefined ? '' : new URL(webEntry.url).searchParams.get('token') ?? ''
         const user = process.env.USER ?? 'user'
         return Promise.resolve(new Response(JSON.stringify({
           lanIps,

@@ -120,6 +120,8 @@ A patch replaces the targeted row's whole `config`, so each web row restates eve
 
 Startup display and browser handoff receive the advertised root with its launch token; the agent's runtime context and `DSH_WEB_URL` receive it clean. The root itself is defined under [Listening, trust, and public deployments](#public-deployments).
 
+The authenticated `/api/remote-access-info` endpoint reads its token from the `dsh web` entry contributed through `webserver/entry-url`, even when startup printing and browser opening are disabled. Its `token` field is empty when no `dsh web` entry supplies a token.
+
 ### Readiness
 
 The URL line and browser handoff are readiness signals: supervisors RPC as soon as they observe the line, and a browser requests the page as soon as it opens, so both run only after the Loader tree settles and the required-startup audit passes — or immediately in a hand-built tree without a Loader. Client combo JavaScript and source maps remain unmaterialized at this point. Optional plugin failures do not suppress readiness; a required startup failure or a tree disposed mid-boot announces nothing. Entry collection passes the ordinary base URL and a mutable entry list; each listener synchronously appends its label, complete URL, and automatic-opening eligibility. Publication runs once per root application; providers that contribute no entry produce no line.

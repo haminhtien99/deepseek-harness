@@ -120,6 +120,8 @@ patch 会替换目标行的整个 `config`，因此每个 Web 行都重述自己
 
 启动显示与浏览器交接接收附带启动 token 的公告根；agent 的运行时上下文与 `DSH_WEB_URL` 接收不含凭据的形式。根本身由[监听、信任与公开部署](#public-deployments)定义。
 
+需要认证的 `/api/remote-access-info` 端点从通过 `webserver/entry-url` 贡献的 `dsh web` 入口读取 token，即使禁用了启动打印和浏览器打开。如果没有 `dsh web` 入口提供 token，其 `token` 字段为空。
+
 ### 就绪宣告
 
 URL 行与浏览器交接都是就绪信号：监督方一观察到该行就发起 RPC，浏览器一打开就请求页面，因此两者只在 Loader 配置树结算并通过 required 启动检查后运行——在没有 Loader 的手工构建树中则立即运行。此时 client combo JavaScript 和 source map 仍未物化。可选插件失败不会阻止就绪宣告；required 启动失败或启动中途被释放的树不会宣告任何内容。入口收集传入普通基地址和可变入口列表；监听器同步追加标签、完整 URL 和自动打开资格。每个根应用仅发布一次；未贡献入口的 Provider 不产生输出行。
